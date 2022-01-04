@@ -83,7 +83,7 @@ BOOL __fastcall Hook1(int This, int EDX, int* a2, int a3)
 }
 
 
-DWORD WINAPI HackThread(HMODULE hModule)
+DWORD WINAPI HThread(HMODULE hModule)
 {
 	//Create Console
 	AllocConsole();
@@ -117,7 +117,7 @@ BOOL APIENTRY DllMain(HMODULE hModule,
 	switch (ul_reason_for_call)
 	{
 	case DLL_PROCESS_ATTACH:
-		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HackThread, hModule, 0, nullptr));
+		CloseHandle(CreateThread(nullptr, 0, (LPTHREAD_START_ROUTINE)HThread, hModule, 0, nullptr));
 	case DLL_THREAD_ATTACH:
 	case DLL_THREAD_DETACH:
 	case DLL_PROCESS_DETACH:
